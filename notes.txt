@@ -1,0 +1,74 @@
+Array:
+    -stores in a contiguous memory blocks
+    -Size of arrays not easily changed after allocated (because of contiguous nature)
+    -Either we resize frequently or we waste space by allocating more than needed.
+    
+Linked lists:
+    -connected by mechanism called linking.
+    -Stored in non contiguous block of memory.
+
+Key Terms
+
+    Linked list
+    Node
+    Pointer
+    Singly linked list
+    Doubly linked list
+    Private class
+
+Implementing Linked Lists:
+    -Node contains
+        -Value
+        -pointer to next item (singly linked list)
+        -pointer to previous item (also present in double linked lists.)
+    
+class _Node {
+    constructor(value, next) {
+        this.value = value;
+        this.next = next;
+    }
+}
+    *private class. this should not be accessed by anything other than another Node class.
+    **denoted with underscore.
+
+LinkedList operations should include: Insertion, Remove, get
+Head is the location of the first item in the linkedlist
+Insertion:
+    at the beginning of the list (insertFirst).
+        -Create new node 
+        -Point head to new node.
+    at the end of the list (insertLast).
+        -Create new node.
+        -Check if the list empty, insert new item as the only item in list if empty.
+        -Start at beginning of the list and move through the list until you reach end of the list.
+        -Set the end node's next pointer to new node.
+        -new node's next pointer is null indicating that the new node is now the last node on the list.
+    anywhere in the list, between 2 nodes (insert, insertAt).
+
+Finding item:
+Start at the head:
+    if the current node has the value you are looking for - return that node
+    else 
+        if the current node has a next value -go to that node
+        else
+            return null
+
+
+Removal-can consider 3 cases:
+    delete from the beginning
+        -go to head select the next pointer to identify second node.
+        -change the head to point to second item.
+    delete from the end of the list
+        -Traverse through entire list.
+        -when you find the end go to the previous node and change next to null.
+    delete a node between two other nodes.
+        -Traverse through the list to identify node with desired value
+        -Collect the next pointer from the node with your desired value.
+        -Go the one node previous. change the next pointer of previous to the node after the one you remove.
+
+Cache Locality:
+    -Arrays tend to be used more often.
+    -cache locality:
+        -Access memory directly from RAM is relatively slow.
+        -CPU manufacture introduce small memory caches based on locality meaning it pulls nearby data.
+        -Theory if you pull from Mississauga maybe you want Brampton information too.

@@ -7,7 +7,7 @@ class LinkedList {
     insertFirst(item) {
         this.head = new _Node(item, this.head);
     }
-      insertLast(item) {
+    insertLast(item) {
         if (this.head === null) {
             this.insertFirst(item);
         }
@@ -41,6 +41,56 @@ class LinkedList {
         // Found it
         return currNode;
     }
+    insertAfter(valueInsert,valueToLook){
+        //null scenario
+        if (this.head === null){
+            console.log(`Could not find ${valueToLook} because your list is null sorry, no inserts made `)
+        }
+        let currentNode = this.head
+        while (currentNode.value !==valueToLook && currentNode.next !== null ){
+                currentNode = currentNode.next
+            }
+            if (currentNode.value === valueToLook){
+                //present
+                const insertMyNode = new _Node(valueInsert,currentNode.next)
+                currentNode.next = insertMyNode
+                console.log(`inserted ${valueInsert} after ${valueToLook}`)
+            }else{
+                //not present
+                console.log(`Could not find ${valueToLook}, no inserts made `)
+            }
+    }
+    insertBefore(valueInsert, valueToLook){
+        
+        //null scenario
+        if (this.head === null){
+            console.log(`Could not find ${valueToLook} because your list is null sorry, no inserts made `)
+        }
+        let currentNode = this.head
+
+        //start scenario
+        if (currentNode.value ===valueToLook ){
+            this.insertFirst(valueInsert)
+            console.log(`inserted ${valueInsert} before ${valueToLook}`)
+        } 
+        else {
+            let previousNode
+            //other scenario
+            while (currentNode.value !==valueToLook && currentNode.next !== null ){
+                previousNode = currentNode
+                currentNode = currentNode.next
+            }
+            if (currentNode.value === valueToLook){
+                const insertMyNode = new _Node(valueInsert,currentNode)
+                previousNode.next = insertMyNode
+                console.log(`inserted ${valueInsert} before ${valueToLook}`)
+            }else{
+                console.log(`Could not find ${valueToLook}, no inserts made `)
+            }
+            //reach the end scenario
+        }
+        
+    }
     remove(item){ 
         // If the list is empty
         if (!this.head) {
@@ -69,3 +119,65 @@ class LinkedList {
     }
 
 }
+function printMyList(node){
+    var currentNode = node
+    console.log(currentNode.value)
+    while (currentNode.next !==null){
+        currentNode = currentNode.next
+        console.log(currentNode.value)
+    }
+}
+function main(){
+    const SLL = new LinkedList()
+    SLL.insertFirst('Apollo')
+    SLL.insertLast('Boomer')
+    SLL.insertLast('Helo')
+    SLL.insertLast('Husker')
+    SLL.insertLast('Starbuck')
+
+    // read what we have.
+    console.log("**************************************************","\n")
+    console.log('First Item')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+    
+    SLL.insertLast('Tauhida')
+    console.log("**************************************************","\n")
+    console.log('Added Tauhida')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+    SLL.remove('Husker')
+    console.log("**************************************************","\n")
+    console.log('Remove Husker')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+    SLL.insertBefore('Rey','Starbuck')
+    console.log("**************************************************","\n")
+    console.log('Added Rey before Starbuck')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+    SLL.insertBefore('Erick','Apollo')
+    console.log("**************************************************","\n")
+    console.log('Added Erick before Apollo')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+    SLL.insertAfter('Edith','Tauhida')
+    console.log("**************************************************","\n")
+    console.log('Added Edith After Tauhida')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+    SLL.insertAfter('Andrew','Rey')
+    console.log("**************************************************","\n")
+    console.log('Added Andrew After Rey')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+}
+
+main()

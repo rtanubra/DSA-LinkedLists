@@ -91,6 +91,30 @@ class LinkedList {
         }
         
     }
+    insertAt(insertValue, index){
+        var count = 0
+        let previousNode 
+        let currentNode = this.head
+        //start incrementing
+        if(index ===0){
+            this.insertFirst(insertValue)
+        }
+        else {
+                while (count < index && currentNode.next !== null ){
+                        count += 1
+                        previousNode = currentNode
+                        currentNode = currentNode.next
+                    }
+                if (count < index){
+                    console.log(`Coult not insert ${insertValue} to index ${index} because index exceeds linkedlist index`)
+                }
+                else {
+                    const newNode = new _Node(insertValue,currentNode)
+                    previousNode.next=newNode
+                }
+            }
+        
+    }
     remove(item){ 
         // If the list is empty
         if (!this.head) {
@@ -175,6 +199,24 @@ function main(){
     SLL.insertAfter('Andrew','Rey')
     console.log("**************************************************","\n")
     console.log('Added Andrew After Rey')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+    
+    SLL.insertAt('Dewi',3)
+    console.log("**************************************************","\n")
+    console.log('Added Dewi at index 3')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+    SLL.insertAt('Japan',300)
+    console.log("**************************************************","\n")
+    console.log('Attempted to add Japan at index 300')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+    SLL.insertAt('Japan',0)
+    console.log("**************************************************","\n")
+    console.log('Added Japan at index 0')
     console.log("\n","**************************************************")
     printMyList(SLL.head)
 

@@ -72,3 +72,6 @@ Cache Locality:
         -Access memory directly from RAM is relatively slow.
         -CPU manufacture introduce small memory caches based on locality meaning it pulls nearby data.
         -Theory if you pull from Mississauga maybe you want Brampton information too.
+            -CPU can access cahed data quicker than RAM data.
+        -Works well for arrays (contiguous nature)
+        -Linked lists are not stored in contiguous memory therefore cached data not likely to help.

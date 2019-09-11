@@ -245,6 +245,36 @@ function main(){
     
 }
 
+function reverse(node){
+    console.log('\n\nhere')
+    if(node.next === null){
+        console.log(`Done nothing to reverse`)
+    }
+    let lastNode = node
+    while (lastNode.next!==null){
+        lastNode = lastNode.next
+    }
+    let previousNode =node
+    let currentNode = node.next
+    //iterative approach
+    while (currentNode.next !== null){
+        previousNode = currentNode
+        currentNode = currentNode.next 
+        if (currentNode.next === null && node.value !== currentNode.value){
+            currentNode.next = previousNode
+            previousNode.next = null
+            previousNode= node
+            currentNode = node.next
+        }
+    }
+    //put the first node at the end and point it to nothing
+    previousNode.next = null
+    currentNode.next = previousNode
+    console.log('done')
+    //returns the last node. Make this your head.
+    return lastNode
+}
+
 function secondary(){
     /**
      * Mystery function
@@ -256,14 +286,55 @@ function secondary(){
     const SLL = new LinkedList()
     SLL.insertFirst('Apollo')
     SLL.insertLast('Boomer')
+    SLL.insertLast('Third_item_to_find')
     SLL.insertLast('Helo')
+    SLL.insertLast('Middle')
     SLL.insertLast('Husker')
     SLL.insertLast('Starbuck')
+    SLL.insertLast('Starrrrrzaligned')
+    SLL.insertLast('finesse')
     console.log("**************************************************","\n")
     console.log('Start')
     console.log("\n","**************************************************")
     printMyList(SLL.head)
+    SLL.head = reverse(SLL.head)
+    console.log("**************************************************","\n")
+    console.log('Reversed the list')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+    console.log("**************************************************","\n")
+    console.log('Third from  the list')
+    console.log("\n","**************************************************")
+    thirdAlgo(SLL.head)
+    console.log("**************************************************","\n")
+    console.log('Middle of the list')
+    console.log("\n","**************************************************")
+    middleFunction(SLL.head)
 
+
+}
+function thirdAlgo(node){
+    const mySize = size(node) 
+    const desiredIndexx = mySize-3
+    var currentNode = node 
+    var index = 0
+    while (index <desiredIndexx ){
+        index +=1
+        currentNode = currentNode.next   
+    }
+    console.log(currentNode.value)
+}
+
+function middleFunction(node){
+    const mySize = size(node) 
+    const desiredIndexx = Math.floor(mySize/2)
+    var currentNode = node 
+    var index = 0
+    while (index <desiredIndexx ){
+        index +=1
+        currentNode = currentNode.next   
+    }
+    console.log(currentNode.value)
 }
 
 
@@ -271,3 +342,5 @@ function secondary(){
 //main()
 secondary()
 
+
+module.exports = LinkedList

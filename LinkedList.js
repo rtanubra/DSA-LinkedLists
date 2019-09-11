@@ -310,8 +310,24 @@ function secondary(){
     console.log('Middle of the list')
     console.log("\n","**************************************************")
     middleFunction(SLL.head)
-
-
+    console.log("**************************************************","\n")
+    console.log('CycleCheck')
+    console.log("\n","**************************************************")
+    const noCycle = new LinkedList()
+    noCycle.insertFirst('One')
+    noCycle.insertLast('Two')
+    noCycle.insertLast('Three')
+    noCycle.insertLast('Four')
+    noCycle.insertLast('Five')
+    noCycle.insertLast('Six')
+    noCycle.insertLast('Seven')
+    cycleInAList(noCycle.head)
+    console.log("**************************************************","\n")
+    console.log('BreakCycle')
+    console.log("\n","**************************************************")
+    //break the list
+    noCycle.head.next.next.next = noCycle.head.next
+    cycleInAList(noCycle.head)
 }
 function thirdAlgo(node){
     const mySize = size(node) 
@@ -337,7 +353,24 @@ function middleFunction(node){
     console.log(currentNode.value)
 }
 
+function cycleInAList(node){
+    //design this to check then BREAK
+    var currentNode =node
+    const pastValue = []
+    
+    while (currentNode.next !== null && pastValue.indexOf(currentNode.value) === -1){
+        pastValue.push(currentNode.value)
+        console.log(pastValue)
+        currentNode =currentNode.next
+    }
+    if (currentNode.next === null){
+        console.log(`completed no repeeats ${pastValue}`)
+    }
+    else {
+        console.log(`Cycles present ${pastValue}`)
+    }
 
+}
 
 //main()
 secondary()

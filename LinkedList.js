@@ -151,6 +151,23 @@ function printMyList(node){
         console.log(currentNode.value)
     }
 }
+function reverseAList(node){
+    
+}
+function size(node){
+    if (!node){
+        return 0
+    }
+    else {
+        var count = 1
+        var currentNode = node
+        while (currentNode.next !== null){
+            count += 1
+            currentNode = currentNode.next
+        }
+        return count
+    }
+}
 function main(){
     const SLL = new LinkedList()
     SLL.insertFirst('Apollo')
@@ -220,6 +237,37 @@ function main(){
     console.log("\n","**************************************************")
     printMyList(SLL.head)
 
+    console.log("**************************************************","\n")
+    console.log('Length of current SLL')
+    console.log("\n","**************************************************")
+
+    console.log(`SLL length is ${size(SLL.head)}`)
+    
 }
 
-main()
+function secondary(){
+    /**
+     * Mystery function
+     *      //start examining a node at the head.
+            //iterate through the rest of the items in the linked list and removes that item from the linked list.
+     */
+
+    //create a linkedLIst
+    const SLL = new LinkedList()
+    SLL.insertFirst('Apollo')
+    SLL.insertLast('Boomer')
+    SLL.insertLast('Helo')
+    SLL.insertLast('Husker')
+    SLL.insertLast('Starbuck')
+    console.log("**************************************************","\n")
+    console.log('Start')
+    console.log("\n","**************************************************")
+    printMyList(SLL.head)
+
+}
+
+
+
+//main()
+secondary()
+
